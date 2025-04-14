@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7egb2012ff3b"]
+[gd_scene load_steps=9 format=3 uid="uid://7egb2012ff3b"]
 
 [ext_resource type="Script" uid="uid://b6xikuts3fa6b" path="res://Levels/scripts/level.gd" id="1_t4c53"]
 [ext_resource type="PackedScene" uid="uid://dgdqc0v1oicd5" path="res://Tile Maps/grass-01.tscn" id="2_nsy0e"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ciuwnb68x5o" path="res://Items/Item.tscn" id="5_pwydo"]
 [ext_resource type="Resource" uid="uid://cixpflhl0cjvo" path="res://Items/gem.tres" id="6_8itkk"]
 [ext_resource type="Resource" uid="uid://bi48vid6jl4ua" path="res://Items/potion.tres" id="7_xhij5"]
+[ext_resource type="PackedScene" uid="uid://dnudieju3k484" path="res://Enemies/enemy.tscn" id="8_th3kk"]
 
 [node name="01" type="Node2D"]
 y_sort_enabled = true
@@ -36,3 +37,6 @@ item_data = ExtResource("6_8itkk")
 [node name="Item2" parent="." instance=ExtResource("5_pwydo")]
 position = Vector2(400, 110)
 item_data = ExtResource("7_xhij5")
+
+[node name="Enemy" parent="." instance=ExtResource("8_th3kk")]
+position = Vector2(306, 116)

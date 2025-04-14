@@ -62,7 +62,9 @@ func update_animation( state : String ) -> void:
 	animation_player.play( state + "_" + anim_direction() )
 	pass
 
-
+func _on_body_entered(body: Node) -> void:
+	print("battle")  # Или body.is_in_group("player")
+		
 func anim_direction() -> String:
 	if cardinal_direction == Vector2.DOWN:
 		return "down"
@@ -70,3 +72,15 @@ func anim_direction() -> String:
 		return "up"
 	else:
 		return "side"
+
+ # Replace with function body.
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if (area.name == "Enemy"):
+		start_battle()
+		
+func start_battle() -> void:
+	# Загружаем сцену боя
+	LevelManager.load_new_level("res://Levels/Area01/battle.tscn","LevelTransition",Vector2(40,20))
+	

@@ -62,7 +62,3 @@ text = "Save"
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Load"
-
-[node name="Button" type="Button" parent="Control/HBoxContainer"]
-layout_mode = 2
-text = "fsdfskdf;l"

@@ -6,10 +6,9 @@ extends Area2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sprite_2d.texture = item_data.texture
-	body_entered.connect(_on_body_entered)
+	area_entered.connect(_on_area_entered)
 	pass # Replace with function body.
-
-func _on_body_entered(body: Node) -> void:
+func _on_area_entered(area: Node) -> void:
 	var data : InventoryData = load("res://GUI/inventory/player_inventory.tres")
 	data.add_item(item_data)
 	queue_free()  # Удаляем предмет с карты

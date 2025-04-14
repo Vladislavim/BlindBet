@@ -8,8 +8,6 @@
 [ext_resource type="Script" uid="uid://c7afdu18gyfte" path="res://Player/scripts/states/state_walk.gd" id="5_b2txu"]
 [ext_resource type="Script" uid="uid://clyil0rqjpuxf" path="res://Player/scripts/player_camera.gd" id="11_hn37x"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_21juq"]
-
 [sub_resource type="Animation" id="Animation_y07xu"]
 length = 0.001
 tracks/0/type = "value"
@@ -240,14 +238,13 @@ _data = {
 &"walk_up": SubResource("Animation_hk6kp")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_21juq"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.174533
 script = ExtResource("1_jeo53")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_21juq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -20)
@@ -285,3 +282,14 @@ script = ExtResource("11_hn37x")
 max_polyphony = 4
 
 [node name="Interactions" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_21juq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_21juq")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
