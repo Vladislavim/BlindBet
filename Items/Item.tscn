@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4ciuwnb68x5o"]
+
+[ext_resource type="Script" uid="uid://chdu12ope4t5i" path="res://Items/scripts/item.gd" id="1_pwpfw"]
+[ext_resource type="Resource" uid="uid://cixpflhl0cjvo" path="res://Items/gem.tres" id="2_4i3uu"]
+[ext_resource type="Script" uid="uid://bplgfms2enofd" path="res://GUI/inventory/scripts/slot_data.gd" id="3_vfb3v"]
+
+[sub_resource type="Resource" id="Resource_gqr7u"]
+script = ExtResource("3_vfb3v")
+item_data = ExtResource("2_4i3uu")
+quantity = 0
+metadata/_custom_type_script = "uid://bplgfms2enofd"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4i3uu"]
+
+[node name="Item" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_pwpfw")
+item_data = SubResource("Resource_gqr7u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4i3uu")

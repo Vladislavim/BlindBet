@@ -1,0 +1,151 @@
+[gd_scene load_steps=13 format=3 uid="uid://bk32yukuf4fs"]
+
+[ext_resource type="Script" uid="uid://c47a8v7rrk2ef" path="res://GUI/inventory/scripts/inventory_menu.gd" id="1_8fxsw"]
+[ext_resource type="Texture2D" uid="uid://bmjan6873e3h5" path="res://Items/sprites/items.png" id="1_aso66"]
+[ext_resource type="Script" uid="uid://deubhdyaijw82" path="res://GUI/inventory/scripts/inventory_ui.gd" id="2_8fxsw"]
+[ext_resource type="Resource" uid="uid://djd6vwckdo4ya" path="res://GUI/inventory/player_inventory.tres" id="3_ir853"]
+[ext_resource type="PackedScene" uid="uid://dndwapovgam4d" path="res://GUI/inventory/inventory_slot.tscn" id="4_gd7jc"]
+[ext_resource type="Resource" uid="uid://bbsrqbseb3so" path="res://Items/spades.tres" id="6_mv8xh"]
+[ext_resource type="Script" uid="uid://b6whvj5qfr25r" path="res://GUI/inventory/scripts/inventory_data.gd" id="6_p6rua"]
+[ext_resource type="Script" uid="uid://bplgfms2enofd" path="res://GUI/inventory/scripts/slot_data.gd" id="7_mv8xh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41pjg"]
+atlas = ExtResource("1_aso66")
+region = Rect2(94.4674, 0.65667, 33.2973, 31.9915)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ovfi"]
+texture = SubResource("AtlasTexture_41pjg")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0.612396, 0, 32.3876, 31)
+
+[sub_resource type="Resource" id="Resource_lkw84"]
+script = ExtResource("7_mv8xh")
+item_data = ExtResource("6_mv8xh")
+quantity = 1
+metadata/_custom_type_script = "uid://bplgfms2enofd"
+
+[sub_resource type="Resource" id="Resource_5pk4c"]
+script = ExtResource("6_p6rua")
+slots = Array[ExtResource("7_mv8xh")]([SubResource("Resource_lkw84"), null, null, null, null])
+metadata/_custom_type_script = "uid://b6whvj5qfr25r"
+
+[node name="InventoryMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_8fxsw")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemDescription" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0.643137)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = 35.0
+offset_right = -34.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "This red drink restores your health! sadfas dfsad fads "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 0.831373)
+
+[node name="Control2" type="Control" parent="Control"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 246.0
+offset_top = 73.0
+offset_right = 422.0
+offset_bottom = 141.0
+mouse_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Control2"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 196.0
+offset_bottom = 57.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_6ovfi")
+
+[node name="CardSlots" type="GridContainer" parent="Control/Control2/PanelContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+columns = 5
+script = ExtResource("2_8fxsw")
+data = SubResource("Resource_5pk4c")
+
+[node name="InventorySlot" parent="Control/Control2/PanelContainer/CardSlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Control/Control2/PanelContainer/CardSlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Control/Control2/PanelContainer/CardSlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Control/Control2/PanelContainer/CardSlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 74.0
+offset_right = 201.0
+offset_bottom = 142.0
+mouse_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Control"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 196.0
+offset_bottom = 90.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_6ovfi")
+
+[node name="InventorySlots" type="GridContainer" parent="Control/Control/PanelContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+columns = 5
+script = ExtResource("2_8fxsw")
+data = ExtResource("3_ir853")
+
+[node name="InventorySlot" parent="Control/Control/PanelContainer/InventorySlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Control/Control/PanelContainer/InventorySlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Control/Control/PanelContainer/InventorySlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Control/Control/PanelContainer/InventorySlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Control/Control/PanelContainer/InventorySlots" instance=ExtResource("4_gd7jc")]
+layout_mode = 2
