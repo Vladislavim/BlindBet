@@ -7,15 +7,12 @@ var type : String #items/cards
 @onready var label: Label = $Label
 @onready var card_slots: InventoryUI = $"../../../../Control2/PanelContainer/CardSlots"
 @onready var inventory_slots: InventoryUI = $"../../../../Control/PanelContainer/InventorySlots"
-var cards : InventoryData
-var items : InventoryData
-var par : InventoryUI
 
+var par : InventoryUI
 
 func _ready() -> void:
 	par = get_parent()
-	cards = load("res://GUI/inventory/player_cardset.tres")
-	items = load("res://GUI/inventory/player_inventory.tres")
+	
 	if par.name == "CardSlots":
 		type = "cards"
 	elif par.name == "InventorySlots":
@@ -27,41 +24,67 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	button_down.connect(_on_button_down)
-	pressed.connect(item_pressed)
+	#pressed.connect(item_pressed)
+	await InventoryMenu.ready
+	InventoryMenu.update_stats()
+
 
 func _on_button_down() -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		item_pressed()
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		item_right_clicked()
-		
+
+
 func item_pressed() -> void:
+	print(1)
 	if slot_data != null:
 		if type == "items" :
 			if slot_data.item_data.type == "card":
 				print("inv->cards")
-				cards.add_item(slot_data.item_data)
-				items.remove_item(get_index())
-				par.update_inventory()
-				card_slots.update_inventory()
-				InventoryMenu.update_item_description("")
+				equip_card(slot_data.item_data)
 			else:
-				par.data.use_item(get_index()) 
-				par.update_inventory()
+				inventory_slots.data.use_item(get_index()) 
+				inventory_slots.update_inventory()
 		elif type == "cards":
 			print("cards->inv")
-			items.add_item(slot_data.item_data)
-			cards.remove_item(get_index())
-			par.update_inventory()
-			inventory_slots.update_inventory()
-			InventoryMenu.update_item_description("")
+			unequip_card(slot_data.item_data)
 	pass
+
+
+func unequip_card(card : ItemData) -> void:
+	if InventoryMenu.items.add_item(slot_data.item_data):
+		match card.cardtype:
+			"spades":
+				InventoryMenu.stats.dmg -= card.cardvalue
+			"hearts":
+				print("remove hearts")
+				InventoryMenu.stats.hp -= card.cardvalue
+				InventoryMenu.stats.max_hp -= card.cardvalue
+				PlayerHud.update_hp(InventoryMenu.stats.hp,InventoryMenu.stats.max_hp)
+		
+		InventoryMenu.update_stats()
+		InventoryMenu.cards.remove_item(get_index())
+		card_slots.update_inventory()
+		inventory_slots.update_inventory()
+		InventoryMenu.update_item_description("")
+	
+
+func equip_card(card : ItemData) -> void:
+	if InventoryMenu.cards.add_item(card):
+		card.card_buff()
+		
+		InventoryMenu.update_stats()
+		InventoryMenu.items.remove_item(get_index())
+		inventory_slots.update_inventory()
+		card_slots.update_inventory()
+		InventoryMenu.update_item_description("")
 
 
 func item_right_clicked() -> void:
 	par.data.remove_item(get_index())
 	par.update_inventory()
-	# Ваша логика для ПКМ (например, контекстное меню)
+
 func _on_mouse_entered() -> void:
 	pass
 

@@ -14,16 +14,16 @@ var invulnerable : bool = false
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var state_machine : PlayerStateMachine = $StateMachine
-var PlayerStats : InventoryData 
+var PlayerStats : PlayerStats 
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	PlayerStats = load("res://GUI/inventory/player_inventory.tres")
+	PlayerStats = load("res://PlayerResources/player_stats.tres")
 	PlayerManager.player = self
 	state_machine.Initialize(self)
-	PlayerStats.update_hp(0)
+	PlayerStats.change_hp(0)
 	pass # Replace with function body.
 
 

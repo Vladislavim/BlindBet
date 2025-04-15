@@ -13,3 +13,29 @@ class_name ItemData extends Resource
 func use():
 	if (type == "Heal"):
 		print("heal")
+
+func card_buff() -> void:
+	match cardtype:
+		"diamonds":
+			InventoryMenu.stats.luck += cardvalue
+		"crosses":
+			InventoryMenu.stats.armor += cardvalue
+		"spades":
+			InventoryMenu.stats.dmg += cardvalue
+		"hearts":
+			InventoryMenu.stats.hp += cardvalue
+			InventoryMenu.stats.max_hp += cardvalue
+			PlayerHud.update_hp(InventoryMenu.stats.hp,InventoryMenu.stats.max_hp)
+
+func card_debuff() -> void:
+	match cardtype:
+		"diamonds":
+			InventoryMenu.stats.luck += cardvalue
+		"crosses":
+			InventoryMenu.stats.armor += cardvalue
+		"spades":
+			InventoryMenu.stats.dmg -= cardvalue
+		"hearts":
+			InventoryMenu.stats.hp -= cardvalue
+			InventoryMenu.stats.max_hp -= cardvalue
+			PlayerHud.update_hp(InventoryMenu.stats.hp,InventoryMenu.stats.max_hp)

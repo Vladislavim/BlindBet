@@ -1,31 +1,30 @@
 class_name InventoryData extends Resource
 
 @export var slots : Array[ SlotData ]
-@export var hp : int 
-@export var max_hp : int
 
 
-func update_hp( delta : int ) -> void:
-	hp = clampi( hp + delta, 0, max_hp )
-	PlayerHud.update_hp( hp, max_hp )
-	pass
 
 
-func add_item(item : ItemData) -> void:
+
+
+func add_item(item : ItemData) -> bool:
 	var i : int = 0
+	var success : bool = false
 	for s in slots:
 		if !s == null:
-			if s.item_data.name == item.name: 
+			if s.item_data.name == item.name and s.item_data.cardtype == item.cardtype and s.item_data.cardvalue == item.cardvalue: 
 				s.quantity+=1
+				success = true
 				break
 		else :
 			var item1 : SlotData
 			item1 = SlotData.new()
 			item1.init(item,1)
 			slots[i] = item1
+			success = true
 			break
 		i+=1
-	pass
+	return success
 
 func remove_item(slot : int) -> void:
 	var i : int = 0

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://f2t0frph4sdc"]
+
+[ext_resource type="Script" uid="uid://bcka7jgcyk46j" path="res://Items/scripts/item_data.gd" id="1_dy4sd"]
+[ext_resource type="Texture2D" uid="uid://bh2u213hsdnik" path="res://Items/sprites/cards/spades2.png" id="2_dy4sd"]
+
+[resource]
+script = ExtResource("1_dy4sd")
+name = "Spades"
+description = "spades 3!"
+texture = ExtResource("2_dy4sd")
+type = "card"
+cardtype = "spades"
+cardvalue = 3

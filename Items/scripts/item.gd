@@ -9,7 +9,7 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	pass # Replace with function body.
 func _on_area_entered(area: Node) -> void:
-	var data : InventoryData = load("res://GUI/inventory/player_inventory.tres")
+	var data : InventoryData = load("res://PlayerResources/player_inventory.tres")
 	data.add_item(item_data)
 	queue_free()  # Удаляем предмет с карты
 	

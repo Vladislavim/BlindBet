@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name PlayerHUD extends CanvasLayer
 
 
 var hearts : Array[ HeartGUI ] = []

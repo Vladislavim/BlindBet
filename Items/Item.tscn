@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4ciuwnb68x5o"]
+[gd_scene load_steps=7 format=3 uid="uid://c4ciuwnb68x5o"]
 
 [ext_resource type="Script" uid="uid://chdu12ope4t5i" path="res://Items/scripts/item.gd" id="1_pwpfw"]
 [ext_resource type="Resource" uid="uid://cixpflhl0cjvo" path="res://Items/gem.tres" id="2_4i3uu"]
 [ext_resource type="Script" uid="uid://bplgfms2enofd" path="res://GUI/inventory/scripts/slot_data.gd" id="3_vfb3v"]
+[ext_resource type="Texture2D" uid="uid://drxq4k6vm1m0m" path="res://Items/sprites/cards/1-P.png" id="4_vfb3v"]
 
 [sub_resource type="Resource" id="Resource_gqr7u"]
 script = ExtResource("3_vfb3v")
@@ -18,6 +19,7 @@ script = ExtResource("1_pwpfw")
 item_data = SubResource("Resource_gqr7u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_vfb3v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4i3uu")

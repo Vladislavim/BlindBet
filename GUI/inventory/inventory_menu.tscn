@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://c47a8v7rrk2ef" path="res://GUI/inventory/scripts/inventory_menu.gd" id="1_8fxsw"]
 [ext_resource type="Texture2D" uid="uid://bmjan6873e3h5" path="res://Items/sprites/items.png" id="1_aso66"]
 [ext_resource type="Script" uid="uid://deubhdyaijw82" path="res://GUI/inventory/scripts/inventory_ui.gd" id="2_8fxsw"]
-[ext_resource type="Resource" uid="uid://djd6vwckdo4ya" path="res://GUI/inventory/player_inventory.tres" id="3_ir853"]
+[ext_resource type="Resource" uid="uid://djd6vwckdo4ya" path="res://PlayerResources/player_inventory.tres" id="3_ir853"]
 [ext_resource type="PackedScene" uid="uid://dndwapovgam4d" path="res://GUI/inventory/inventory_slot.tscn" id="4_gd7jc"]
-[ext_resource type="Resource" uid="uid://ccvfqtv6rafc2" path="res://GUI/inventory/player_cardset.tres" id="4_liyx4"]
+[ext_resource type="Resource" uid="uid://ccvfqtv6rafc2" path="res://PlayerResources/player_cardset.tres" id="4_liyx4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41pjg"]
 atlas = ExtResource("1_aso66")
@@ -32,6 +32,70 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HP" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 149.0
+offset_right = 330.0
+offset_bottom = 172.0
+text = "HP: "
+
+[node name="DMG" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 173.0
+offset_right = 330.0
+offset_bottom = 196.0
+text = "DAMAGE : "
+
+[node name="ARMOR" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 196.0
+offset_right = 330.0
+offset_bottom = 219.0
+text = "ARMOR: "
+
+[node name="LUCK" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 220.0
+offset_right = 330.0
+offset_bottom = 243.0
+text = "LUCK: "
+
+[node name="HP_text" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 149.0
+offset_right = 410.0
+offset_bottom = 172.0
+text = "0"
+
+[node name="DMG_text" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 173.0
+offset_right = 451.0
+offset_bottom = 196.0
+text = "0"
+
+[node name="ARMOR_text" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 196.0
+offset_right = 437.0
+offset_bottom = 219.0
+text = "0"
+
+[node name="LUCK_text" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 220.0
+offset_right = 420.0
+offset_bottom = 243.0
+text = "0"
 
 [node name="ItemDescription" type="Label" parent="Control"]
 modulate = Color(1, 1, 1, 0.643137)
